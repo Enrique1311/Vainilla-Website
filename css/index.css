@@ -9,8 +9,8 @@
 :root {
 	font-size: 16px;
 	--primary-color: #05a805;
-	--secondary-color: #a7faa7;
-	--primary-modal-color: #eafbea;
+	--secondary-color: #b4f7b4;
+	--primary-modal-color: #f3faf3;
 	--secondary-modal-color: #0008;
 	--white-color: #ffffff;
 	--container-width: 100%;
@@ -19,6 +19,7 @@
 body {
 	overflow-x: hidden;
 }
+h1,
 h2 {
 	font-size: 2rem;
 	color: var(--primary-color);
@@ -87,8 +88,13 @@ header {
 	right: 1rem;
 }
 
+.menu-icon.is-active {
+	background-color: var(--white-color);
+	color: var(--primary-color);
+}
+
 .mobile-menu {
-	background-color: var(--primary-modal-color);
+	background-color: var(--primary-color);
 	position: sticky;
 	z-index: 400;
 	display: flex;
@@ -98,7 +104,7 @@ header {
 	top: 0;
 	bottom: 0;
 	visibility: hidden;
-	transition: transform 0.3s ease;
+	transition: all 0.3s ease;
 	transform: translateX(100%);
 }
 
@@ -119,19 +125,19 @@ header {
 }
 
 .mobile-menu-nav a {
-	color: var(--primary-color);
+	color: var(--white-color);
 	font-size: 1.2rem;
 	padding: 1rem;
 	border-radius: 10px;
-	transition: all 0.3s ease;
+	transition: all 0.5s ease;
 	width: 100%;
 	text-align: center;
 }
 
 .desktop-menu a:hover,
 .mobile-menu-nav a:hover {
-	background-color: var(--primary-color);
-	color: var(--white-color);
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
 }
 
 /* Media Queries ************************************************************ */
