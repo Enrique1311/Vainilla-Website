@@ -1,5 +1,7 @@
 const d = document;
 
+// Mobile-menu********************************
+
 function toogleMenu(e) {
 	d.querySelector(".mobile-menu").classList.toggle("is-active");
 	d.querySelector(".menu-icon").classList.toggle("is-active");

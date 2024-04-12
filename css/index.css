@@ -19,6 +19,7 @@
 body {
 	overflow-x: hidden;
 }
+
 h1,
 h2 {
 	font-size: 2rem;
@@ -46,7 +47,7 @@ img {
 
 /* Header******************************** */
 
-header {
+.header {
 	width: 100%;
 	background-color: var(--secondary-color);
 	display: flex;
@@ -64,8 +65,13 @@ header {
 
 .desktop-menu a {
 	color: var(--primary-color);
-	padding: 0.5rem 1rem;
-	border-radius: 10px;
+	font-weight: bold;
+	/* transition: text-decoration 0.3s ease; */
+}
+
+.desktop-menu a:hover {
+	text-underline-offset: 0.3rem;
+	text-decoration: underline 5px solid;
 }
 
 /* Mobile menu  ******************************/
@@ -134,9 +140,8 @@ header {
 	text-align: center;
 }
 
-.desktop-menu a:hover,
 .mobile-menu-nav a:hover {
-	background-color: var(--secondary-color);
+	background-color: var(--white-color);
 	color: var(--primary-color);
 }
 
@@ -160,7 +165,10 @@ header {
 	}
 
 	.desktop-menu {
-		display: block;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
 	}
 
 	.menu-icon {
