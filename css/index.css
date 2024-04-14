@@ -13,18 +13,17 @@
 	--primary-modal-color: #f3faf3;
 	--secondary-modal-color: #0008;
 	--white-color: #ffffff;
-	--container-width: 100%;
 }
 
 body {
 	overflow-x: hidden;
-	position: relative;
+	background-color: var(--white-color);
+	color: var(--primary-color);
 }
 
 h1,
 h2 {
 	font-size: 2rem;
-	color: var(--primary-color);
 }
 
 a {
@@ -41,7 +40,6 @@ img {
 	padding: 1rem;
 	padding-top: 4rem;
 	width: 100%;
-	max-width: var(--container-width);
 	text-align: center;
 	min-height: 100vh;
 }
@@ -52,7 +50,7 @@ img {
 	width: 100%;
 	background-color: var(--secondary-color);
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	padding: 0.5rem 1.5rem;
 	position: sticky;
@@ -75,19 +73,37 @@ img {
 	text-decoration: underline 5px solid;
 }
 
+.theme-btn {
+	background-color: rgb(4, 4, 112);
+	width: 1.8rem;
+	height: 1.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+.dark-theme {
+	background-color: rgb(32, 31, 31);
+	color: var(--secondary-color);
+}
+
 /* Mobile menu  ******************************/
 
 .menu-icon {
 	position: fixed;
 	z-index: 500;
 	background-color: var(--primary-color);
+	color: var(--white-color);
 	width: 3rem;
 	height: 3rem;
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: var(--white-color);
+
 	font-size: 1.5rem;
 	cursor: pointer;
 	padding: 0.5rem;
@@ -151,12 +167,12 @@ img {
 /* Top Button******************************** */
 .top-btn {
 	position: fixed;
-	z-index: 1000;
+	z-index: 300;
 	left: 1rem;
 	bottom: 1rem;
-	width: 3rem;
+	width: 2rem;
 	height: 3rem;
-	border-radius: 50%;
+	border-radius: 0.5rem;
 	color: var(--primary-color);
 	font-size: 1.5rem;
 	border: 2px solid var(--primary-color);
@@ -189,10 +205,6 @@ img {
 }
 
 @media screen and (min-width: 768px) {
-	.header {
-		justify-content: space-between;
-	}
-
 	.desktop-menu {
 		display: flex;
 		justify-content: space-between;

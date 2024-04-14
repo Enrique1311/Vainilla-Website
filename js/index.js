@@ -10,6 +10,18 @@ function toogleMenu() {
 	d.querySelector(".icon").classList.toggle("fa-xmark");
 }
 
+// Dark Theme Button*******************************
+const $selector = d.querySelectorAll("[data-dark]");
+console.log($selector);
+
+function changeTheme() {
+	d.querySelector(".theme-icon").classList.toggle("fa-moon");
+	d.querySelector(".theme-icon").classList.toggle("fa-sun");
+	d.querySelector(".theme-icon").classList.toggle("dark-theme");
+
+	$selector.forEach((el) => el.classList.toggle("dark-theme"));
+}
+
 // Top Button********************************
 
 w.addEventListener("scroll", (e) => {
@@ -34,5 +46,9 @@ d.addEventListener("click", (e) => {
 	// Top Button Click Events********************************
 	if (e.target.matches(".top-btn") || e.target.matches(".top-btn i")) {
 		w.scrollTo({ behavior: "smooth", top: 0 });
+	}
+
+	if (e.target.matches(".theme-btn") || e.target.matches(".theme-btn i")) {
+		changeTheme();
 	}
 });
