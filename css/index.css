@@ -105,7 +105,7 @@ img {
 }
 
 .theme-btn {
-	background-color: #0404a1;
+	background-color: var(--primary-color);
 	width: 2rem;
 	height: 2rem;
 	display: flex;
@@ -123,10 +123,6 @@ img {
 
 .dark-theme p {
 	color: var(--secondary-color);
-}
-
-.dark-theme .theme-btn {
-	background-color: #5151f8;
 }
 
 /* Mobile menu  ******************************/
@@ -214,15 +210,16 @@ video {
 
 .slider {
 	position: relative;
-	width: 80%;
+	width: 90%;
 	margin: 1rem auto;
-	/* border: thin solid black; */
+	border-radius: 10px;
+	overflow: hidden;
 	text-align: center;
 }
 
 .slider-slides {
 	position: relative;
-	height: 400px;
+	height: 450px;
 }
 
 .slide {
@@ -254,22 +251,22 @@ video {
 	top: calc(50% - 2rem);
 	display: flex;
 	justify-content: space-between;
-	font-size: 1.5rem;
 	padding: 0.5rem;
 }
 
-.slider a {
+.slider button {
 	display: block;
 	width: 2rem;
 	height: 2rem;
 	border-radius: 50%;
-	text-decoration: none;
+	border: none;
 	background-color: var(--white-color);
 	color: var(--bg-dark-theme-color);
+	font-size: 1.5rem;
 	transition: all 0.5s ease;
 }
 
-.slider a:hover {
+.slider button:hover {
 	color: var(--white-color);
 	background-color: var(--bg-dark-theme-color);
 }
