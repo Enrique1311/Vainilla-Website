@@ -11,6 +11,101 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	};
 	deviceDetector();
 
+	// Scroll Spy********************************
+	function scrollSpy() {
+		const $sections = d.querySelectorAll("section");
+		const $menuLinks = d.querySelectorAll(".desktop-menu a");
+
+		w.onscroll = () => {
+			$sections.forEach((section) => {
+				let top = w.scrollY,
+					offset = section.offsetTop - 60,
+					height = section.offsetHeight;
+
+				let id = section.getAttribute("id");
+
+				if (top >= offset && top < offset + height) {
+					$menuLinks.forEach((link) => {
+						link.classList.remove("active");
+						d.querySelector(`.desktop-menu a[href*="${id}"]`).classList.add(
+							"active"
+						);
+					});
+				}
+			});
+		};
+	}
+	scrollSpy();
+
+	// Dark Theme Button*******************************
+	const $selector = d.querySelectorAll("[data-dark]");
+
+	function changeToLight() {
+		d.querySelector(".theme-icon").classList.remove("fa-sun");
+		d.querySelector(".theme-icon").classList.add("fa-moon");
+		d.querySelector(".theme-icon").classList.remove("dark-theme");
+		$selector.forEach((el) => el.classList.remove("dark-theme"));
+		localStorage.setItem("theme", "light");
+	}
+
+	function changeToDark() {
+		d.querySelector(".theme-icon").classList.remove("fa-moon");
+		d.querySelector(".theme-icon").classList.add("fa-sun");
+		d.querySelector(".theme-icon").classList.add("dark-theme");
+		$selector.forEach((el) => el.classList.add("dark-theme"));
+		localStorage.setItem("theme", "dark");
+	}
+
+	if (localStorage.getItem("theme") === null)
+		localStorage.setItem("theme", "light");
+
+	if (localStorage.getItem("theme") === "light") changeToLight();
+
+	if (localStorage.getItem("theme") === "dark") changeToDark();
+
+	// Mobile-menu********************************
+
+	function toogleMenu() {
+		d.querySelector(".mobile-menu").classList.toggle("is-active");
+		d.querySelector(".menu-icon").classList.toggle("is-active");
+		d.querySelector(".icon").classList.toggle("fa-bars");
+		d.querySelector(".icon").classList.toggle("fa-xmark");
+	}
+
+	d.addEventListener("click", (e) => {
+		if (e.target.matches(".menu-icon") || e.target.matches(".menu-icon i")) {
+			toogleMenu(e);
+		}
+		if (e.target.matches(".mobile-menu a")) {
+			toogleMenu(e);
+		}
+	});
+
+	// Top Button********************************
+
+	w.addEventListener("scroll", (e) => {
+		let scrollTop = document.documentElement.scrollTop;
+
+		if (scrollTop > 100) {
+			d.querySelector(".top-btn").classList.remove("hidden-btn");
+		} else {
+			d.querySelector(".top-btn").classList.add("hidden-btn");
+		}
+	});
+
+	d.addEventListener("click", (e) => {
+		if (e.target.matches(".top-btn") || e.target.matches(".top-btn i")) {
+			w.scrollTo({ behavior: "smooth", top: 0 });
+		}
+		if (e.target.matches(".theme-btn") || e.target.matches(".theme-btn i")) {
+			if (d.querySelector("header").classList.contains("dark-theme")) {
+				changeToLight(e);
+			} else {
+				changeToDark(e);
+			}
+		}
+	});
+
 	// About Us (video) - Mobile or Desktop********************************
 
 	function videoLoader() {
@@ -69,78 +164,6 @@ d.addEventListener("DOMContentLoaded", (e) => {
 			: ($map.innerHTML = mapDesktopContent);
 	}
 	mapLoader(isMobile);
-
-	// Dark Theme Button*******************************
-
-	const $selector = d.querySelectorAll("[data-dark]");
-
-	function changeToLight() {
-		d.querySelector(".theme-icon").classList.remove("fa-sun");
-		d.querySelector(".theme-icon").classList.add("fa-moon");
-		d.querySelector(".theme-icon").classList.remove("dark-theme");
-		$selector.forEach((el) => el.classList.remove("dark-theme"));
-		localStorage.setItem("theme", "light");
-	}
-
-	function changeToDark() {
-		d.querySelector(".theme-icon").classList.remove("fa-moon");
-		d.querySelector(".theme-icon").classList.add("fa-sun");
-		d.querySelector(".theme-icon").classList.add("dark-theme");
-		$selector.forEach((el) => el.classList.add("dark-theme"));
-		localStorage.setItem("theme", "dark");
-	}
-
-	if (localStorage.getItem("theme") === null)
-		localStorage.setItem("theme", "light");
-
-	if (localStorage.getItem("theme") === "light") changeToLight();
-
-	if (localStorage.getItem("theme") === "dark") changeToDark();
-
-	// Mobile-menu********************************
-
-	function toogleMenu() {
-		d.querySelector(".mobile-menu").classList.toggle("is-active");
-		d.querySelector(".menu-icon").classList.toggle("is-active");
-		d.querySelector(".icon").classList.toggle("fa-bars");
-		d.querySelector(".icon").classList.toggle("fa-xmark");
-	}
-
-	// Top Button********************************
-
-	w.addEventListener("scroll", (e) => {
-		let scrollTop = document.documentElement.scrollTop;
-
-		if (scrollTop > 100) {
-			d.querySelector(".top-btn").classList.remove("hidden-btn");
-		} else {
-			d.querySelector(".top-btn").classList.add("hidden-btn");
-		}
-	});
-
-	// Add Events********************************
-
-	d.addEventListener("click", (e) => {
-		// Menu Click Events********************************
-		if (e.target.matches(".menu-icon") || e.target.matches(".menu-icon i")) {
-			toogleMenu(e);
-		}
-		if (e.target.matches(".mobile-menu a")) {
-			toogleMenu(e);
-		}
-
-		// Top Button Click Events********************************
-		if (e.target.matches(".top-btn") || e.target.matches(".top-btn i")) {
-			w.scrollTo({ behavior: "smooth", top: 0 });
-		}
-		if (e.target.matches(".theme-btn") || e.target.matches(".theme-btn i")) {
-			if (d.querySelector("header").classList.contains("dark-theme")) {
-				changeToLight(e);
-			} else {
-				changeToDark(e);
-			}
-		}
-	});
 });
 
 // Network Status********************************
@@ -170,34 +193,4 @@ function networkStatus() {
 		isOnline();
 	});
 }
-
 networkStatus();
-
-// Images********************************
-
-function slider() {
-	const $prevBtn = d.querySelector(".prev");
-	const $nextBtn = d.querySelector(".next");
-	const $slides = d.querySelectorAll(".slide");
-
-	let i = 0;
-
-	d.addEventListener("click", (e) => {
-		if (e.target === $prevBtn) {
-			e.preventDefault();
-			$slides[i].classList.remove("active");
-			i -= 1;
-			if (i < 0) {
-				i = $slides.length - 1;
-			}
-			$slides[i].classList.add("active");
-		}
-
-		if (e.target === $nextBtn) {
-			e.preventDefault();
-			$slides[i].classList.remove("active");
-			i += 1;
-			$slides[i].classList.add("active");
-		}
-	});
-}
