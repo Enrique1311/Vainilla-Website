@@ -1,6 +1,5 @@
 const d = document;
 const w = window;
-const $selector = d.querySelectorAll("[data-dark]");
 
 d.addEventListener("DOMContentLoaded", (e) => {
 	// Device Detection********************************
@@ -8,7 +7,7 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	const ua = navigator.userAgent;
 	let isMobile;
 	const deviceDetector = () => {
-		isMobile = ua.match(/android|iphone|ipad|ipod/i) ? true : false;
+		isMobile = ua.match(/mobile/i) ? true : false;
 	};
 	deviceDetector();
 
@@ -16,8 +15,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
 
 	function videoLoader() {
 		const videoMobileContent = `<a href="https://youtu.be/12Zug5-4Vhs?si=B3POD5B6Fdr5cQnz" target="_blank">Ver video</a>`;
-		const videoDesktopContent = `<iframe width="560" height="315" src="https://www.youtube.com/embed/12Zug5-4Vhs?si=4Fc9OrL0rGTFI48J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-		const $video = d.getElementById("video");
+		const videoDesktopContent = `<video controls="true" src="../assets/coverr-a-woman-picks-lettuce-on-a-farm-2718-1080p.mp4"></video>`;
+		const $video = d.getElementById("my-video");
 
 		isMobile
 			? ($video.innerHTML = videoMobileContent)
@@ -25,12 +24,17 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	}
 	videoLoader(isMobile);
 
+	// Images********************************
+
+	function slider() {}
+	slider();
+
 	// Contact (map) - Mobile or Desktop********************************
 
 	function mapLoader() {
 		const mapMobileContent = `<a href="https://maps.app.goo.gl/5jcuax1Ut9L989rA8" target="_blank">Ver mapa</a>`;
-		const mapDesktopContent = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0167135780985!2d-58.38415068794941!3d-34.60373887284167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1713188377133!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-		const $map = d.getElementById("map");
+		const mapDesktopContent = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0167135780985!2d-58.38415068794941!3d-34.60373887284167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1713188377133!5m2!1ses-419!2sar" width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+		const $map = d.getElementById("my-map");
 
 		isMobile
 			? ($map.innerHTML = mapMobileContent)
@@ -39,6 +43,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	mapLoader(isMobile);
 
 	// Dark Theme Button*******************************
+
+	const $selector = d.querySelectorAll("[data-dark]");
 
 	function changeToLight() {
 		d.querySelector(".theme-icon").classList.remove("fa-sun");
@@ -108,3 +114,33 @@ d.addEventListener("DOMContentLoaded", (e) => {
 		}
 	});
 });
+
+// Network Status********************************
+
+function networkStatus() {
+	const isOnline = () => {
+		const $div = d.createElement("div");
+
+		if (navigator.onLine) {
+			$div.textContent = "Your connection was restored!";
+			$div.classList.add("online");
+			$div.classList.remove("offline");
+		} else {
+			$div.textContent = "Lost connection!";
+			$div.classList.add("offline");
+			$div.classList.remove("online");
+		}
+
+		d.body.insertAdjacentElement("afterbegin", $div);
+		setTimeout(() => d.body.removeChild($div), 2000);
+	};
+
+	w.addEventListener("online", (e) => {
+		isOnline();
+	});
+	w.addEventListener("offline", (e) => {
+		isOnline();
+	});
+}
+
+networkStatus();
