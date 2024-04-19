@@ -18,29 +18,29 @@
 	</head>
 	<body data-dark>
 		<header
-			class="header"
+			class="header section-padding-x"
 			data-dark
 		>
 			<a href="/"><p>Logo</p></a>
 			<nav class="desktop-menu">
 				<a
 					class="active"
-					data-scroll-spy
+					data-scroll-spy="home"
 					href="#home"
 					>Home</a
 				>
 				<a
-					data-scroll-spy
+					data-scroll-spy="about"
 					href="#about"
 					>About Us</a
 				>
 				<a
-					data-scroll-spy
+					data-scroll-spy="images"
 					href="#images"
 					>Images</a
 				>
 				<a
-					data-scroll-spy
+					data-scroll-spy="contact"
 					href="#contact"
 					>Contact</a
 				>
@@ -57,51 +57,39 @@
 		</div>
 		<aside class="mobile-menu">
 			<nav class="mobile-menu-nav">
-				<a
-					data-scroll-spy
-					href="#home"
-					>Home</a
-				>
-				<a
-					data-scroll-spy
-					href="#about"
-					>About Us</a
-				>
-				<a
-					data-scroll-spy
-					href="#images"
-					>Images</a
-				>
-				<a
-					data-scroll-spy
-					href="#contact"
-					>Contact</a
-				>
+				<a href="#home">Home</a>
+				<a href="#about">About Us</a>
+				<a href="#images">Images</a>
+				<a href="#contact">Contact</a>
 			</nav>
 		</aside>
 		<main>
 			<section
 				id="home"
-				class="section"
-				data-scroll-spy
+				class="section section-padding-x"
 			>
 				<h2>Home</h2>
 				<p>mhmnvmnvmnvmnvmn</p>
 			</section>
 			<section
 				id="about"
-				class="section"
-				data-scroll-spy
+				class="section section-padding-x"
 			>
 				<h2>About Us</h2>
 				<div id="my-video"></div>
 			</section>
 			<section
 				id="images"
-				class="section"
-				data-scroll-spy
+				class="section section-padding-x"
 			>
 				<h2>Images</h2>
+				<video
+					src="./assets/coverr-ai-generated-serene-cow-in-golden-hour-fields-1080p.mp4"
+					controls
+					muted
+					loop
+					data-smart-video
+				></video>
 				<div class="slider">
 					<div class="slider-slides">
 						<div class="slide active">
@@ -144,13 +132,60 @@
 						</button>
 					</div>
 				</div>
+				<div>
+					<video
+						src="./assets/coverr-serving-appetizers-5268-1080p.mp4"
+						controls
+						muted´
+						loop
+						data-smart-video
+					></video>
+				</div>
 			</section>
 			<section
 				id="contact"
-				class="section"
+				class="section section-padding-x"
 				data-scroll-spy
 			>
 				<h2>Contact</h2>
+				<form class="contact-form">
+					<legend>Send us a message</legend>
+					<input
+						type="text"
+						name="name"
+						placeholder="Your name..."
+						title="Only letters and blanks!"
+						pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+						required
+					/><input
+						type="email"
+						name="email"
+						placeholder="Your email..."
+						title="Invalid email address!"
+						pattern="^[a-z0-9]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+						required
+					/>
+					<textarea
+						name="message"
+						cols="50"
+						rows="6"
+						placeholder="Your message..."
+						title="Only 255 caracters!"
+						required
+						data-pattern="^.[1,255]$"
+					></textarea>
+					<input
+						type="submit"
+						value="Send"
+					/>
+					<div class="form-loader none">
+						<img
+							src="./assets//Dual Ring@1x-0.8s-200px-200px.svg"
+							alt="Sending..."
+						/>
+					</div>
+					<div class="form-response none"><p>Your message was sended!</p></div>
+				</form>
 				<d id="my-map"></d>
 			</section>
 			<footer class="footer">

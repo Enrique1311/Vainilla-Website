@@ -43,15 +43,14 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	function changeToLight() {
 		d.querySelector(".theme-icon").classList.remove("fa-sun");
 		d.querySelector(".theme-icon").classList.add("fa-moon");
-		d.querySelector(".theme-icon").classList.remove("dark-theme");
 		$selector.forEach((el) => el.classList.remove("dark-theme"));
+
 		localStorage.setItem("theme", "light");
 	}
 
 	function changeToDark() {
 		d.querySelector(".theme-icon").classList.remove("fa-moon");
 		d.querySelector(".theme-icon").classList.add("fa-sun");
-		d.querySelector(".theme-icon").classList.add("dark-theme");
 		$selector.forEach((el) => el.classList.add("dark-theme"));
 		localStorage.setItem("theme", "dark");
 	}
@@ -62,6 +61,16 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	if (localStorage.getItem("theme") === "light") changeToLight();
 
 	if (localStorage.getItem("theme") === "dark") changeToDark();
+
+	d.addEventListener("click", (e) => {
+		if (e.target.matches(".theme-btn") || e.target.matches(".theme-btn i")) {
+			if (d.querySelector("header").classList.contains("dark-theme")) {
+				changeToLight(e);
+			} else {
+				changeToDark(e);
+			}
+		}
+	});
 
 	// Mobile-menu********************************
 
@@ -96,13 +105,6 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	d.addEventListener("click", (e) => {
 		if (e.target.matches(".top-btn") || e.target.matches(".top-btn i")) {
 			w.scrollTo({ behavior: "smooth", top: 0 });
-		}
-		if (e.target.matches(".theme-btn") || e.target.matches(".theme-btn i")) {
-			if (d.querySelector("header").classList.contains("dark-theme")) {
-				changeToLight(e);
-			} else {
-				changeToDark(e);
-			}
 		}
 	});
 
@@ -151,6 +153,23 @@ d.addEventListener("DOMContentLoaded", (e) => {
 	}
 
 	slider();
+
+	function smartVideo() {
+		const $smartVideos = d.querySelectorAll("video[data-smart-video]");
+
+		const cb = (entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.play();
+				} else {
+					entry.target.pause();
+				}
+			});
+		};
+		const observer = new IntersectionObserver(cb, { threshold: 0.5 });
+		$smartVideos.forEach((el) => observer.observe(el));
+	}
+	smartVideo();
 
 	// Contact (map) - Mobile or Desktop********************************
 
