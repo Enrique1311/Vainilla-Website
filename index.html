@@ -25,25 +25,12 @@
 			<nav class="desktop-menu">
 				<a
 					class="active"
-					data-scroll-spy="home"
 					href="#home"
 					>Home</a
 				>
-				<a
-					data-scroll-spy="about"
-					href="#about"
-					>About Us</a
-				>
-				<a
-					data-scroll-spy="images"
-					href="#images"
-					>Images</a
-				>
-				<a
-					data-scroll-spy="contact"
-					href="#contact"
-					>Contact</a
-				>
+				<a href="#about">About Us</a>
+				<a href="#images">Images</a>
+				<a href="#contact">Contact</a>
 			</nav>
 			<div class="theme-btn">
 				<i
@@ -85,7 +72,6 @@
 				<h2>Images</h2>
 				<video
 					src="./assets/coverr-ai-generated-serene-cow-in-golden-hour-fields-1080p.mp4"
-					controls
 					muted
 					loop
 					data-smart-video
@@ -135,8 +121,7 @@
 				<div>
 					<video
 						src="./assets/coverr-serving-appetizers-5268-1080p.mp4"
-						controls
-						muted´
+						muted
 						loop
 						data-smart-video
 					></video>
@@ -148,7 +133,12 @@
 				data-scroll-spy
 			>
 				<h2>Contact</h2>
-				<form class="contact-form">
+				<form
+					class="contact-form"
+					action="https://formsubmit.co/enriquespinelli.coder@gmail.com"
+					method="POST"
+					target="_blank"
+				>
 					<legend>Send us a message</legend>
 					<input
 						type="text"
@@ -172,19 +162,25 @@
 						placeholder="Your message..."
 						title="Only 255 caracters!"
 						required
-						data-pattern="^.[1,255]$"
+						data-pattern="^.{1,255}$"
 					></textarea>
 					<input
 						type="submit"
 						value="Send"
 					/>
-					<div class="form-loader none">
-						<img
-							src="./assets//Dual Ring@1x-0.8s-200px-200px.svg"
-							alt="Sending..."
-						/>
+					<div class="form-message none">
+						<div class="form-loader none">
+							<img
+								src="./assets//Dual Ring@1x-0.8s-200px-200px.svg"
+								alt="Sending..."
+							/>
+							<p>Sending the message...</p>
+						</div>
+
+						<div class="form-response none">
+							<p>Your message was sended!</p>
+						</div>
 					</div>
-					<div class="form-response none"><p>Your message was sended!</p></div>
 				</form>
 				<d id="my-map"></d>
 			</section>
