@@ -243,6 +243,7 @@ function formValidations() {
 	});
 
 	d.addEventListener("submit", (e) => {
+		e.preventDefault();
 		const $message = d.querySelector(".form-message");
 		const $loader = d.querySelector(".form-loader");
 		const $response = d.querySelector(".form-response");
@@ -250,14 +251,23 @@ function formValidations() {
 		$message.classList.remove("none");
 		$loader.classList.remove("none");
 
-		setTimeout(() => {
-			$loader.classList.add("none");
-			$response.classList.remove("none");
-			$form.reset();
-			setTimeout(() => {
-				$message.classList.add("none");
-			}, 3000);
-		}, 3000);
+		fetch("https://formsubmit.co/enriquespinelli.coder@gmail.com", {
+			method: "POST",
+			body: new FormData(e.target),
+		})
+			.then((res) => (res.ok ? res.json() : Promise.reject(res)))
+			.then((res) => {
+				console.log(json);
+				$loader.classList.add("none");
+				$response.classList.remove("none");
+				$form.reset();
+			})
+			.catch((err) => {})
+			.finally(() => {
+				setTimeout(() => {
+					$message.classList.add("none");
+				}, 1000);
+			});
 	});
 }
 
@@ -267,7 +277,7 @@ themeSelector();
 
 d.addEventListener(
 	"DOMContentLoaded",
-	scrollSpy(),
+	scrollSpy,
 	mobileMenu(),
 	topButton(),
 	videoLoader(isMobile),
